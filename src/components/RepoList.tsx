@@ -52,7 +52,7 @@ export default function RepoList() {
       const res = await fetch("/api/toggle-visibility", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ repos: selected, makePrivate }),
+        body: JSON.stringify({ repo: selected, makePrivate }),
       });
       if (!res.ok) throw new Error("Faild to toggle visibility");
       const updated = (await res.json()) as Partial<Repo> & {
