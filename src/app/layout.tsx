@@ -3,6 +3,7 @@ import Provider from "../components/Provider";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import Navbar from "@/components/Navbar";
+import { ThemeProvider } from "next-themes";
 
 export default async function RootLayout({
   children,
@@ -11,12 +12,14 @@ export default async function RootLayout({
 }>) {
   const session = await getServerSession(authOptions);
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <Provider session={session}>
-          <Navbar />
-          {children}
-        </Provider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Provider session={session}>
+            <Navbar />
+            {children}
+          </Provider>
+        </ThemeProvider>
       </body>
     </html>
   );
