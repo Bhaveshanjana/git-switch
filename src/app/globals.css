@@ -24,3 +24,31 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+@keyframes glowRevealCentral {
+          0% {
+            transform: scale(0.1); 
+            opacity: 0;
+          }
+      50% {
+        opacity: 0.8; 
+      }
+      100% {
+         transform: scale(2.5); 
+     opacity: 1; 
+   }
+}
+.glow-bg {
+    background: radial-gradient(circle at center top, rgba(125, 212, 252, 0.901) 0%, rgba(29, 79, 216, 0.655) 40%, rgba(17,24,39,0) 70%);
+    background-repeat: no-repeat;
+    background-position: center top;
+    width: 40%;
+    height: 70%;
+    border-radius: 80%; 
+    filter: blur(70px); 
+    transform-origin: center top; 
+    animation: glowRevealCentral 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; 
+    z-index: 0; 
+}
+
+
+

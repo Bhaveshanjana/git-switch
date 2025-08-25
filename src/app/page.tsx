@@ -2,9 +2,8 @@ import React, { Suspense } from "react";
 import Navbar from "../components/Navbar";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import FeatureCard from "@/components/Featured";
 import RepoList from "@/components/RepoList";
-
+import Hero from "@/components/Hero";
 
 export default async function page() {
   const session = await getServerSession(authOptions);
@@ -14,10 +13,10 @@ export default async function page() {
       <Navbar />
       <main>
         {!isAuthed ? (
-          <FeatureCard />
+          <Hero />
         ) : (
           <Suspense>
-         <RepoList/>
+            <RepoList />
           </Suspense>
         )}
       </main>
