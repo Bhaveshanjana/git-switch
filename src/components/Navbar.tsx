@@ -1,7 +1,8 @@
 "use client";
 
+import { ThemeToggle } from "@/utils/Toggle-theme";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useTheme } from "next-themes";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,14 +10,10 @@ export default function Navbar() {
   const { data: session, status } = useSession();
   const isAuthed = status === "authenticated";
 
-  const { theme, setTheme } = useTheme();
-  const handleThemeChange = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       <nav className="mx-auto max-w-6xl px-4 py-8">
-        <div className="backdrop-blur bg-white/5 dark:bg-white/5  border-[1px] border-[#20202036] dark:border-[#e2f1ef22] rounded-2xl flex items-center justify-between px-4 py-4">
+        <div className="bg-transparent backdrop-blur-xl border border-slate-200 dark:border-slate-600  shadow-lg shadow-black/20 dark:bg-black/5  rounded-2xl flex items-center justify-between px-4 py-4">
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-2">
               <div className=" w-7 h-7 rounded-lg bg-transparent flex items-center justify-center">
@@ -49,18 +46,14 @@ export default function Navbar() {
                 )}
                 <button
                   onClick={() => signOut()}
-                  className="text-xs px-3 py-1.5 rounded-full border border-white/20 hover:bg-white/10"
+                  className="text-xs text-gray-700 dark:text-gray-300 px-3 py-1.5 rounded-full border border-slate-400 bg-gray-200 dark:bg-gray-800 hover:bg-gray-400 dark:hover:bg-gray-700 transition-colors duration-300 cursor-pointer"
                 >
                   Sign out
                 </button>
+                <ThemeToggle />
               </>
             ) : (
-              <button
-                onClick={handleThemeChange}
-                className="text-xs dark:text-red-500 text-white px-3 py-1.5 rounded-full border border-white/20 hover:bg-white/10"
-              >
-                theme
-              </button>
+              <ThemeToggle />
             )}
           </div>
         </div>

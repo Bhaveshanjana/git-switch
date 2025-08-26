@@ -14,8 +14,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-
-
 body {
   background: var(--background);
   color: var(--foreground);
@@ -39,7 +37,7 @@ body {
     background-repeat: no-repeat;
     background-position: center top;
     width: 40%;
-    height: 70%;
+    height: 50%;
     border-radius: 80%; 
     filter: blur(70px); 
     transform-origin: center top; 
