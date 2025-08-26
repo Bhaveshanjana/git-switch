@@ -15,10 +15,7 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Provider session={session}>
-            <Navbar />
-            {children}
-          </Provider>
+          <Provider session={session}>{children}</Provider>
         </ThemeProvider>
       </body>
     </html>
