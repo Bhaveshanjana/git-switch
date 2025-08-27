@@ -4,31 +4,22 @@ import { useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
-interface ThemeToggleProps {
-  className?: string;
-}
-
-export function ThemeToggle({ className = "" }: ThemeToggleProps) {
+export function ThemeToggle() {
   const [isDark, setIsDark] = useState(true);
-
-  const combineClasses = (...classes: string[]) => {
-    return classes.filter(Boolean).join(" ");
-  };
-
   const { theme, setTheme } = useTheme();
+
   const handleThemeChange = () => {
     setTheme(theme === "dark" ? "light" : "dark");
     setIsDark(!isDark);
   };
+
   return (
     <div
-      className={combineClasses(
-        "flex w-16 h-7.5 p-1 rounded-full cursor-pointer transition-all duration-300",
+      className={`flex w-16 h-7 p-1 rounded-full cursor-pointer transition-all duration-300 ${
         isDark
-          ? "border border-slate-400 bg-gray-800  hover:bg-gray-700 "
-          : " hover:bg-gray-400 bg-gray-200 border border-[#65706e]",
-        className
-      )}
+          ? "border border-slate-400  hover:bg-gray-600"
+          : "hover:bg-gray-300  border border-[#65706e]"
+      }`}
       onClick={handleThemeChange}
       role="button"
       tabIndex={0}
@@ -40,22 +31,20 @@ export function ThemeToggle({ className = "" }: ThemeToggleProps) {
     >
       <div className="flex justify-between items-center w-full">
         <div
-          className={combineClasses(
-            "flex justify-center items-center w-6 h-6 rounded-full transition-transform duration-300",
-            isDark ? "transform translate-x-0 " : "transform translate-x-8 "
-          )}
+          className={`flex justify-center items-center w-5 h-5 rounded-full transition-transform duration-300 ${
+            isDark ? "translate-x-0 bg-gray-500" : "translate-x-8 bg-gray-400"
+          }`}
         >
           {isDark ? (
-            <Moon className="w-4 h-4 text-gray-200" strokeWidth={1.5} />
+            <Moon className="w-4 h-4 text-gray-200 " strokeWidth={1.5} />
           ) : (
             <Sun className="w-4 h-4 text-gray-800" strokeWidth={1.5} />
           )}
         </div>
         <div
-          className={combineClasses(
-            "flex justify-center items-center w-6 h-6 rounded-full transition-transform duration-300",
-            isDark ? "bg-transparent" : "transform -translate-x-8"
-          )}
+          className={`flex justify-center items-center w-5 h-5 rounded-full transition-transform duration-300 ${
+            isDark ? "bg-transparent" : "-translate-x-8"
+          }`}
         >
           {isDark ? (
             <Sun className="w-4 h-4 text-black" strokeWidth={1.5} />
