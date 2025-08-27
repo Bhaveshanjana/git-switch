@@ -237,7 +237,7 @@ export default function RepoList() {
                           e.stopPropagation();
                           setShowVisibilityModal(true);
                         }}
-                        className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+                        className=" p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
                         title="Change visibility"
                       >
                         <Settings className="h-5 w-5 text-gray-500 dark:text-gray-400 cursor-pointer" />
