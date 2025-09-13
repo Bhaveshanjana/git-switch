@@ -15,11 +15,11 @@ export function ThemeToggle() {
   };
   const iconVariants = {
     hidden: {
-      translateY: -30,
+      y: -30,
       opacity: 0,
     },
     visible: {
-      translateY: 0,
+      y: 0,
       opacity: 1,
       transition: {
         duration: 0.3,
@@ -27,14 +27,14 @@ export function ThemeToggle() {
       },
     },
     exit: {
-      translateY: -30,
+      y: -30,
       opacity: 0,
       transition: {
         duration: 0.3,
         ease: "easeIn",
       },
     },
-  };
+  } as const;
   return (
     <button className="flex cursor-pointer " onClick={handleThemeChange}>
       <AnimatePresence mode="wait">
