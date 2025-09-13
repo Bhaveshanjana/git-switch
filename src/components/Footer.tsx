@@ -5,10 +5,10 @@ import Link from "next/link";
 
 const Footer: React.FC = () => {
   return (
-    <footer className=" bg-background dark:bg-foreground py-2 px-4 sm:px-6 lg:px-8 ">
+    <footer className=" py-2 px-4 sm:px-6 lg:px-8 ">
       <div className="max-w-full mx-auto">
         {/* Main content in 2 columns */}
-        <div className="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
+        <div className="flex flex-col sm:flex-row justify-between items-center ">
           {/* Left side - Love message */}
           <div className="flex items-center space-x-2 text-gray-700 dark:text-gray-300">
             <span className={`text-sm sm:text-base font-medium ${quick}`}>
@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom text */}
-        <div className="mt-2 md:mt-6 border-t border-gray-100 dark:border-gray-800">
+        <div className="mt-2 md:mt-3 border-t border-gray-100 dark:border-gray-800">
           <p
             className={`text-center text-xs md:text-lg text-gray-500 dark:text-gray-400 ${edu}`}
           >

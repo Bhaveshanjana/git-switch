@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { AnimatePresence, motion } from "motion/react";
 
 export function ThemeToggle() {
   const [isDark, setIsDark] = useState(true);
@@ -12,47 +13,46 @@ export function ThemeToggle() {
     setTheme(theme === "dark" ? "light" : "dark");
     setIsDark(!isDark);
   };
-
+  const iconVariants = {
+    hidden: {
+      translateY: -30,
+      opacity: 0,
+    },
+    visible: {
+      translateY: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut",
+      },
+    },
+    exit: {
+      translateY: -30,
+      opacity: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeIn",
+      },
+    },
+  };
   return (
-    <div
-      className={`flex w-16 h-7 p-1 rounded-full cursor-pointer transition-all duration-300 ${
-        isDark
-          ? "border border-slate-400  hover:bg-gray-600"
-          : "hover:bg-gray-300  border border-[#65706e]"
-      }`}
-      onClick={handleThemeChange}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          setIsDark(!isDark);
-        }
-      }}
-    >
-      <div className="flex justify-between items-center w-full">
-        <div
-          className={`flex justify-center items-center w-5 h-5 rounded-full transition-transform duration-300 ${
-            isDark ? "translate-x-0 bg-gray-500" : "translate-x-8 bg-gray-400"
-          }`}
+    <button className="flex cursor-pointer " onClick={handleThemeChange}>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={isDark ? "moon" : "sun"}
+          variants={iconVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          className="mr-2"
         >
           {isDark ? (
-            <Moon className="w-4 h-4 text-gray-200 " strokeWidth={1.5} />
+            <Sun className="w-5 h-5 text-gray-300 " strokeWidth={2} />
           ) : (
-            <Sun className="w-4 h-4 text-gray-800" strokeWidth={1.5} />
+            <Moon className="w-5 h-5 text-gray-800" strokeWidth={2} />
           )}
-        </div>
-        <div
-          className={`flex justify-center items-center w-5 h-5 rounded-full transition-transform duration-300 ${
-            isDark ? "bg-transparent" : "-translate-x-8"
-          }`}
-        >
-          {isDark ? (
-            <Sun className="w-4 h-4 text-black" strokeWidth={1.5} />
-          ) : (
-            <Moon className="w-4 h-4 text-black" strokeWidth={1.5} />
-          )}
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </AnimatePresence>
+    </button>
   );
 }
